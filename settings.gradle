@@ -1,0 +1,5 @@
+rootProject.name = 'commons'
+include 'commons-api'
+include 'commons-core'
+include 'commons-launcher'
+

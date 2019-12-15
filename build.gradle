@@ -1,0 +1,42 @@
+allprojects {
+
+	group = 'in.philomath.platform'
+	version = '0.0.1-SNAPSHOT'
+
+	repositories {
+		mavenLocal()
+		mavenCentral()
+	}
+}
+
+subprojects {
+	apply plugin: 'java-library'
+	apply plugin: 'maven'
+
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
+
+	dependencies {
+		compileOnly ("org.projectlombok:lombok:${LOMBOK_VERSION}")
+		annotationProcessor ("org.projectlombok:lombok:${LOMBOK_VERSION}")
+
+		testCompile ("org.junit.jupiter:junit-jupiter-api:${JUNIT_VERSION}")
+		testCompile ("org.junit.jupiter:junit-jupiter-engine:${JUNIT_VERSION}")
+	}
+
+	task sourcesJar(type: Jar, dependsOn: classes) {
+		from sourceSets.main.allSource
+	}
+
+	task javadocZip(type: Zip, dependsOn: javadoc) {
+		from javadoc.destinationDir
+	}
+
+	artifacts {
+		archives jar
+		archives sourcesJar
+		archives javadocZip
+	}
+}
+
+

@@ -1,0 +1,33 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${SPRING_BOOT_VERSION}")
+    }
+}
+
+apply plugin: "io.spring.dependency-management"
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.boot:spring-boot-dependencies:${SPRING_BOOT_VERSION}"
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Finchley.SR1"
+    }
+}
+
+dependencies {
+    api project(":commons-api")
+    api project(":commons-core")
+
+    compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+
+    compile('org.springframework.cloud:spring-cloud-starter-config')
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile("org.springframework.boot:spring-boot-starter-freemarker")
+}
+
+
+
