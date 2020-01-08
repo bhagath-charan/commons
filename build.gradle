@@ -1,6 +1,6 @@
 allprojects {
 
-	group = 'in.philomath.platform'
+	group = 'in.philomath'
 	version = '0.0.1-SNAPSHOT'
 
 	repositories {
